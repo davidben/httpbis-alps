@@ -4,8 +4,8 @@
 
 HTTP Working Group                                           V. Vasiliev
 Internet-Draft                                                    Google
-Intended status: Standards Track                         21 January 2021
-Expires: 25 July 2021
+Intended status: Standards Track                         22 January 2021
+Expires: 26 July 2021
 
 
       Using TLS Application-Layer Protocol Settings (ALPS) in HTTP
@@ -46,17 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2021.
-
-
-
-
-
-
-Vasiliev                  Expires 25 July 2021                  [Page 1]
-
-Internet-Draft                  HTTP ALPS                   January 2021
-
+   This Internet-Draft will expire on 26 July 2021.
 
 Copyright Notice
 
@@ -74,14 +64,14 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Conventions and Definitions . . . . . . . . . . . . . . . . .   3
-   3.  Use of ALPS in HTTP . . . . . . . . . . . . . . . . . . . . .   3
-   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
-   6.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .   4
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   4
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Use of ALPS in HTTP
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  Normative References
+   Acknowledgments
+   Author's Address
 
 1.  Introduction
 
@@ -103,16 +93,6 @@ Table of Contents
    soon as the handshake completes.  This removes the need for
    synchronizing settings, and makes them available earlier than they
    would be otherwise.
-
-
-
-
-
-
-Vasiliev                  Expires 25 July 2021                  [Page 2]
-
-Internet-Draft                  HTTP ALPS                   January 2021
-
 
    This document defines how ALPS is used with HTTP/2 and HTTP/3, and
    introduces certain new settings that would not be practical without
@@ -157,18 +137,6 @@ Internet-Draft                  HTTP ALPS                   January 2021
    before they are authenticated; thus, if a server relies on TLS client
    authentication and considers its settings private, it MUST NOT use
    the mechanism defined in this document.
-
-
-
-
-
-
-
-
-Vasiliev                  Expires 25 July 2021                  [Page 3]
-
-Internet-Draft                  HTTP ALPS                   January 2021
-
 
 5.  IANA Considerations
 
@@ -216,9 +184,3 @@ Author's Address
    Google
 
    Email: vasilvv@google.com
-
-
-
-
-
-Vasiliev                  Expires 25 July 2021                  [Page 4]
