@@ -4,8 +4,8 @@
 
 HTTP Working Group                                           V. Vasiliev
 Internet-Draft                                                    Google
-Intended status: Standards Track                             6 July 2020
-Expires: 7 January 2021
+Intended status: Standards Track                         21 January 2021
+Expires: 25 July 2021
 
 
       Using TLS Application-Layer Protocol Settings (ALPS) in HTTP
@@ -46,21 +46,21 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 January 2021.
+   This Internet-Draft will expire on 25 July 2021.
 
 
 
 
 
 
-Vasiliev                 Expires 7 January 2021                 [Page 1]
+Vasiliev                  Expires 25 July 2021                  [Page 1]
 
-Internet-Draft                  HTTP ALPS                      July 2020
+Internet-Draft                  HTTP ALPS                   January 2021
 
 
 Copyright Notice
 
-   Copyright (c) 2020 IETF Trust and the persons identified as the
+   Copyright (c) 2021 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -77,12 +77,11 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Conventions and Definitions . . . . . . . . . . . . . . . . .   3
    3.  Use of ALPS in HTTP . . . . . . . . . . . . . . . . . . . . .   3
-   4.  New Settings  . . . . . . . . . . . . . . . . . . . . . . . .   3
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
-   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
-   7.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
+   4.  Security Considerations . . . . . . . . . . . . . . . . . . .   3
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
+   6.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
 
@@ -109,9 +108,10 @@ Table of Contents
 
 
 
-Vasiliev                 Expires 7 January 2021                 [Page 2]
+
+Vasiliev                  Expires 25 July 2021                  [Page 2]
 
-Internet-Draft                  HTTP ALPS                      July 2020
+Internet-Draft                  HTTP ALPS                   January 2021
 
 
    This document defines how ALPS is used with HTTP/2 and HTTP/3, and
@@ -150,44 +150,7 @@ Internet-Draft                  HTTP ALPS                      July 2020
    those to be sent through ALPS.  Such extensions are exempt from the
    initialization requirements of the Section 7.2.4.2 of [HTTP3].
 
-4.  New Settings
-
-   In addition to specifying the use of ALPS, this document introduces a
-   way for an endpoint to use HTTP/2 and HTTP/3 without any form of
-   header compression.  Previously, using SETTINGS to opt into the use
-   of header compression would result in the first flight of requests
-   being sent fully uncompressed; ALPS provides settings before any of
-   the requests are sent, thus removing that concern.
-
-   The following new HTTP/2 setting is introduced:
-
-   SETTINGS_HPACK_ENABLE_STATIC_TABLES (0x??):  May be "0" or "1".  If
-
-
-
-Vasiliev                 Expires 7 January 2021                 [Page 3]
-
-Internet-Draft                  HTTP ALPS                      July 2020
-
-
-      set to "0", the only allowed HPACK instructions are "Literal
-      Header Field without Indexing" and "Literal Header Field Never
-      Indexed" (Sections 6.2.2 and 6.2.3 of [RFC7541]), with index set
-      to "0", and the "H" bit set to zero for both string literals.  The
-      default value is "1".
-
-   The following new HTTP/3 setting is introduced:
-
-   SETTINGS_QPACK_ENABLE_STATIC_TABLES (0x??):  May be "0" or "1".  If
-      set to "0", the only allowed QPACK instruction is "Literal Field
-      Line Without Name Reference", with the "H" bit set to zero for
-      both string literals.  The default value is "1".
-
-   Those settings MUST be supported by any endpoint that uses ALPS in
-   conjunction with HTTP/2 or HTTP/3.  Both of those settings MUST NOT
-   be sent outside of the ALPS.
-
-5.  Security Considerations
+4.  Security Considerations
 
    In ALPS, both client and server settings are sent encrypted.
    Settings communicated through ALPS are presented to all clients
@@ -195,36 +158,26 @@ Internet-Draft                  HTTP ALPS                      July 2020
    authentication and considers its settings private, it MUST NOT use
    the mechanism defined in this document.
 
-6.  IANA Considerations
+
+
+
+
+
+
+
+Vasiliev                  Expires 25 July 2021                  [Page 3]
+
+Internet-Draft                  HTTP ALPS                   January 2021
+
+
+5.  IANA Considerations
 
    IANA will add an "Allowed in ALPS" column to the "HTTP/2 Frames"
    section of the "Hypertext Transfer Protocol version 2 (HTTP/2)
    Parameters" registry, with a value set to "Yes" for SETTINGS (0x4),
    and to "No" for all other previously defined settings.
 
-   IANA will add the following entry into the "HTTP/2 Settings" table:
-
-   Code  0x??
-
-   Name  HPACK_ENABLE_STATIC_TABLES
-
-   Initial Value  1
-
-   Reference  This document
-
-   TODO: Add HTTP/3 once IANA has an HTTP/3 registry.
-
-7.  Normative References
-
-
-
-
-
-
-Vasiliev                 Expires 7 January 2021                 [Page 4]
-
-Internet-Draft                  HTTP ALPS                      July 2020
-
+6.  Normative References
 
    [ALPS]     Vasiliev, V., "TLS Application-Layer Protocol Settings
               Extension", Work in Progress, Internet-Draft, draft-vvv-
@@ -245,10 +198,6 @@ Internet-Draft                  HTTP ALPS                      July 2020
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
-
-   [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
-              HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
-              <https://www.rfc-editor.org/info/rfc7541>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -272,9 +221,4 @@ Author's Address
 
 
 
-
-
-
-
-
-Vasiliev                 Expires 7 January 2021                 [Page 5]
+Vasiliev                  Expires 25 July 2021                  [Page 4]
