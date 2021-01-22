@@ -177,6 +177,8 @@ Internet-Draft                  HTTP ALPS                   January 2021
    Parameters" registry, with a value set to "Yes" for SETTINGS (0x4),
    and to "No" for all other previously defined settings.
 
+   TODO: Add HTTP/3 once IANA has an HTTP/3 registry.
+
 6.  Normative References
 
    [ALPS]     Vasiliev, V., "TLS Application-Layer Protocol Settings
@@ -214,8 +216,6 @@ Author's Address
    Google
 
    Email: vasilvv@google.com
-
-
 
 
 
